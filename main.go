@@ -55,7 +55,8 @@ func sw() {
 	}
 }
 
-func main() {
+//Variables
+func vari() {
 	//Declaracion de variables
 	var numero int
 	var nombre, apellidos string
@@ -65,27 +66,128 @@ func main() {
 	apellidos = "Mendoza Ramirez"
 	//Variable de asignacion dinamica
 	ciudad := "Oaxaca"
+	fmt.Println("Hello world!", numero, nombre, apellidos, ciudad)
+}
+
+//Operadores
+func op() {
 	//Operadores
 	a := 8
 	b := 3
-	fmt.Println("Operacion", a/b)
+	fmt.Println("Operacion a/b:", a/b)
 	var resultado bool
 	resultado = 5 < 7
-	fmt.Println("Resultado", resultado)
+	fmt.Println("Resultado de evaluar 5<7 y tirarlo a una varibale de tipo bool:", resultado)
+}
+func ciclo() {
 	//Estructuras de control
+	//Contador declarado fuera del for
 	i := 1
 	for i <= 5 {
 		fmt.Println(i)
 		i++
 	}
-	for j := 1; j <= 5; j++ {
+	//Variable inicializada dentro del for
+	for j := 1; j <= 3; j++ {
 		fmt.Println(j)
 	}
-	if a := 2; a <= 4 {
-		fmt.Println("a es menor")
+	//If con variable inicializada y comparada en la misma sentencia
+	if a := 5; a <= 4 {
+		fmt.Println("a es menor o igual")
 	}
-	fmt.Println("Hello world!", numero, nombre, apellidos, ciudad)
+}
+func sld2() {
+	//Declaracón de slide
+	x := make([]byte, 4, 100)
+	fmt.Println(x)
+	//inicializacion
+	x = []byte{'H', 'O', 'L', 'A'}
+	fmt.Println(x)
+	fmt.Printf("Slide X: %q \n", x)
+	for i := 0; i < len(x); i++ {
+		fmt.Printf("Slide: [%d]%q \n", i, x[i])
+	}
+	//x[5] = 'Y'
+	//fmt.Printf("%q \n", x)
+	x = append(x, 'M', 'U', 'N', 'D', 'O')
+	fmt.Printf("%q \n", x)
+}
+func copysld() {
+	origen := []int{1, 2, 3}
+	destino := []int{3, 4, 5}
+	copy(destino, origen)
+	fmt.Println(origen, destino)
+	//-------------------
+	origen2 := []int{1, 2, 3}
+	destino2 := make([]int, 2)
+	copy(destino2, origen2)
+	fmt.Println(origen2, destino2)
+	//--------------------
+	origen3 := []int{1, 2}
+	destino3 := []int{3, 4, 5}
+	copy(destino3, origen3)
+	fmt.Println(origen3, destino3)
+}
+func rango() {
+	nombres := []string{
+		"Melchor",
+		"Alejandro",
+		"Alisson",
+	}
+	for i, n := range nombres {
+		fmt.Printf("el nombre %q esta en el indice %d \n", n, i)
+	}
+	for _, n := range nombres {
+		fmt.Println(n)
+	}
+}
+func mapa() {
+	//mapa 1
+	x := make(map[string]string)
+	x["nombre"] = "Melchor"
+	x["edad"] = "39"
+	fmt.Println(x)
+	fmt.Println(x["edad"])
+	//Mapa 2 con longitud
+	y := make(map[string]string, 2)
+	fmt.Println(y)
+	//mapa 3 declaracion diferente
+	z := map[string]int{
+		"Melchor":   39,
+		"Alisson":   15,
+		"Alejandro": 8,
+	}
+	fmt.Println(z)
+	//eliminacion de elementos de un Mapa
+	delete(z, "Alejandro")
+	fmt.Println(z)
+	a, b := z["Alejandro"]
+	fmt.Println(a, b)
+	//Recorrer un mapa con range
+	for nombre, edad := range z {
+		fmt.Printf("La edad de %s es %d \n", nombre, edad)
+	}
+}
+
+//Implementacion de una función
+func devuelveNombre(nombre string) {
+	fmt.Println("Tu nombres es:", nombre)
+}
+func sumatoria(n1 int, n2 int) int {
+	return n1 + n2
+}
+func main() {
+	sum := sumatoria(3, 7)
+	fmt.Println(sum)
+	//devuelveNombre("Melchor MR")
+	//mapa()
+	//rango()
+	//copysld()
+	//sld2()
+	//ciclo()
+	//|op()
+	//vari()
 	//sw()
 	//arr()
-	sld()
+	//sld()
 }
