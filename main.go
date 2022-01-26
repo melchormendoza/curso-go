@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 //slide
 func sld() {
@@ -188,9 +191,46 @@ func suma(numeros ...int) (r int) {
 	}
 	return r
 }
+func multi(numero int) (r1, r2, r3 int) {
+
+	r1 = numero * 4
+	r2 = numero * 5
+	r3 = numero * 7
+
+	return
+}
+func texto() (c int, data []byte, err error) {
+	f, err := os.Open("texto.txt")
+	if err != nil {
+		panic(err)
+	}
+	data = make([]byte, 23)
+	c, err = f.Read(data)
+	if err != nil {
+		panic(err)
+	}
+	//fmt.Printf("%q \n %d \n", data, c)
+	return c, data, err
+}
 func main() {
-	sum := suma
-	fmt.Println(sum(2, 3, 4))
+	cantidad, data, error := texto()
+	fmt.Println("Caracteres: \n", cantidad)
+	fmt.Printf("%q \n", data)
+	fmt.Println(error)
+	/*
+		a, b, c := multi(5)
+		fmt.Println(a, b, c)
+	*/
+	//fmt.Println(multi(2))
+	/*
+		cad := "Hola"
+		imp := func() {
+			fmt.Println(cad)
+		}
+		imp()
+	*/
+	//sum := suma
+	//fmt.Println(sum(2, 3, 4))
 	//fmt.Println(suma(6, 1, 2, 4))
 	//fmt.Println(suma(67, 14, 12, 49))
 	//fmt.Println(suma())
