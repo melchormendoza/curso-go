@@ -176,9 +176,26 @@ func devuelveNombre(nombre string) {
 func sumatoria(n1 int, n2 int) int {
 	return n1 + n2
 }
+func resto(numero1 int, numero2 int) (r int) {
+	r = numero1 - numero2
+	return
+}
+
+//Variadic function|
+func suma(numeros ...int) (r int) {
+	for _, numero := range numeros {
+		r += numero
+	}
+	return r
+}
 func main() {
-	sum := sumatoria(3, 7)
-	fmt.Println(sum)
+	sum := suma
+	fmt.Println(sum(2, 3, 4))
+	//fmt.Println(suma(6, 1, 2, 4))
+	//fmt.Println(suma(67, 14, 12, 49))
+	//fmt.Println(suma())
+	//fmt.Println(resto(19, 7))
+	//fmt.Println(sumatoria(3, 7))
 	//devuelveNombre("Melchor MR")
 	//mapa()
 	//rango()
