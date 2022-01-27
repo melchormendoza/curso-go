@@ -209,14 +209,69 @@ func texto() (c int, data []byte, err error) {
 	if err != nil {
 		panic(err)
 	}
+	defer f.Close()
 	//fmt.Printf("%q \n %d \n", data, c)
 	return c, data, err
 }
+func puntero() {
+	a := 5
+	fmt.Println("Valor de a:", a)
+	fmt.Println("Direccion en memoria de a:", &a)
+	b := &a
+	fmt.Println(&a)
+	fmt.Println(*b)
+}
+func puntero2(numero *int) {
+	*numero++
+	fmt.Println("Numero incrementado:", *numero)
+}
+
+type Persona struct {
+	nombre string
+	edad   int
+}
+
+func calculaEdad(p1, p2, p3 Persona) Persona {
+	if p1.edad > p2.edad {
+		if p1.edad > p3.edad {
+			return p1
+		} else {
+			return p3
+		}
+	} else {
+		if p2.edad > p3.edad {
+			return p2
+		} else {
+			return p3
+		}
+	}
+}
 func main() {
-	cantidad, data, error := texto()
-	fmt.Println("Caracteres: \n", cantidad)
-	fmt.Printf("%q \n", data)
-	fmt.Println(error)
+	p1 := Persona{"Melchor", 8}
+	p2 := Persona{"Alisson", 54}
+	p3 := Persona{"Anelitzi", 87}
+	viejo := calculaEdad(p1, p2, p3)
+	fmt.Printf("Entre %s,%s y %s, %s es mayor\n", p1.nombre, p2.nombre, p3.nombre, viejo.nombre)
+
+	/*
+		var p Persona
+		p.nombre = "Melchor"
+		p.edad = 35
+		fmt.Println(p)
+	*/
+	/*
+		numero := 4
+		fmt.Println("Numero original:", numero)
+		puntero2(&numero)
+		fmt.Println("Numero despues de ser incrementado:", numero)
+	*/
+	//puntero()
+	/*
+		cantidad, data, error := texto()
+		fmt.Println("Caracteres: \n", cantidad)
+		fmt.Printf("%q \n", data)
+		fmt.Println(error)
+	*/
 	/*
 		a, b, c := multi(5)
 		fmt.Println(a, b, c)
